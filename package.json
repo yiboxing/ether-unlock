@@ -1,0 +1,14 @@
+{
+  "name": "ether-unlock",
+  "version": "1.0.0",
+  "description": "crack private key to unlock specific address",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sim",
+  "license": "ISC",
+  "dependencies": {
+    "ethereumjs-util": "^5.1.5"
+  }
+}

@@ -9,6 +9,7 @@
   "author": "sim",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "ethereumjs-util": "^5.1.5"
   }
 }

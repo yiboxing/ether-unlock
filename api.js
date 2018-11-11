@@ -1,5 +1,6 @@
 var http = require("http")
 var https = require("https")
+var request = require('request')
 
 
 //------------------------------------------------------------------------------
@@ -36,6 +37,24 @@ exports.GetInternalTxList = function(address, callback) {
   ProcessHttpRequest(config.etherscan_api.host, config.etherscan_api.port, 'GET', '/api' + params, '', callback);
 }
 
+// exports.PostTwitchRedeemCode = function(key, callback) {
+//   ProcessHttpRequest(config.etherscan_api.host, config.etherscan_api.port, 'POST', '/api' + params, '', callback);
+// }
+
+exports.PostTwitchRedeemCode = function(key, callback) {
+  var queryContent = '[{"operationName":"CodeRedemptionValidation_GetKeyStatus","variables":{"code":"' + key + '"},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"9e606e3b434c9293e6ee971ad46fae2a7663efd14a92eec7b8dfdc9d3b78f24e"}}}]'
+  var options = {
+    url: config.twitch.api,
+    headers: {
+      'Content-Type': 'text/plain;charset=UTF-8',
+      'Client-Id': config.twitch.client_id,
+      'Authorization': config.twitch.auth_token,
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+      ''
+    },
+    body: queryContent
+  }
+  request.post(options, callback)
 //------------------------------------------------------------------------------
 //  Utils
 //------------------------------------------------------------------------------

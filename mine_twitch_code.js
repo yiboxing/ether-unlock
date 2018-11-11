@@ -59,7 +59,7 @@ function mine() {
   api.PostTwitchRedeemCodeAsync(sk)
   .then(function(result) {
     var result = JSON.parse(result.body);
-    log.Info(sk + ' : ' + JSON.stringify(result[0].data))
+    log.Info(sk + ' : ' + JSON.stringify(result))
     if (result[0].data.key != null) {
       process.exit();
     } 

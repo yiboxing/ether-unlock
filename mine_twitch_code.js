@@ -56,20 +56,22 @@ function mine() {
     var char = charSet.charAt(Math.floor(Math.random() * 36));
     sk = sk.substr(0, index) + char + sk.substr(index + 1)
   }
-  log.Info(sk);
-
   api.PostTwitchRedeemCodeAsync(sk)
   .then(function(result) {
-    var result = JSON.parse(result);
+    var result = JSON.parse(result.body);
+    log.Info(sk + ' : ' + JSON.stringify(result[0].data))
     if (result[0].data.key != null) {
       process.exit();
-    }
+    } 
+
+    // try again
+    setTimeout(mine, 500);
   })
   .catch(function(error) {
     if (error != null) {
       log.Error(error.stack)
     }
     // try again
-    mine();
+    setTimeout(mine, 500);
   });
 }
